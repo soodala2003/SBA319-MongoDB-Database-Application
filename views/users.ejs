@@ -1,0 +1,11 @@
+<ul>
+  <% results.forEach(user => { %>
+    <li>
+      <a href="/users/<%= user._id %>" style="display:flex; list-style-type:none; text-decoration:none;">
+        <span><%= user.name %></span>
+      </a>
+    </li>
+  <% }) %>
+</ul>
+
+

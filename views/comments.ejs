@@ -1,0 +1,9 @@
+<ul>
+  <% results.forEach(comment => { %>
+    <li>
+        <a href="/comments/<%= comment._id %>" style="display:flex; list-style-type:none; text-decoration:none;">
+          <span><%= comment.name %></span>
+        </a>
+    </li>
+  <% }) %>
+</ul>
