@@ -2,6 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 import expressLayout from "express-ejs-layouts";
 import cookieParser from "cookie-parser";
+import methodOverride from "method-override";
 import users from "./routes/users.mjs";
 import comments from "./routes/comments.mjs";
 import movies from "./routes/movies.mjs";
@@ -14,6 +15,7 @@ const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cookieParser());
+app.use(methodOverride("_method"));
 
 app.use(express.static("public"));
 
