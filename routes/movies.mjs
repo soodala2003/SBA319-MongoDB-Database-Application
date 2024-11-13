@@ -4,16 +4,16 @@ import { ObjectId } from "mongodb";
 
 const router = express.Router();
 
-// Get all movies with "_id", "plot", "tilte", and "year" entries 
+// Get 20 movies with "_id", "plot", "tilte", and "year" entries 
 router.get("/", async (req, res) => {
     let collection = await db.collection("movies");
     let results = await collection
         .aggregate([
             { $project: { _id: 1, plot: 1, title: 1, year: 1 } },
         ])
+        .limit(20)
         .toArray();
     res.render("movies", { results });
-    //res.send(results).status(200);
 });
 
 // Get a single movie
