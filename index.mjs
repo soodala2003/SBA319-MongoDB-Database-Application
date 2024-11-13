@@ -1,6 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
 import expressLayout from "express-ejs-layouts";
+import cookieParser from "cookie-parser";
 import main from "./routes/main.mjs";
 import users from "./routes/users.mjs";
 import comments from "./routes/comments.mjs";
@@ -13,6 +14,7 @@ const app = express();
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(cookieParser());
 
 app.use(express.static("public"));
 
@@ -22,7 +24,6 @@ app.set("layout", "./layouts/main");
 app.set("view engine", "ejs");
 
 app.use("/", main);
-
 app.use("/users", users);
 app.use("/comments", comments);
 app.use("/movies", movies);
