@@ -1,0 +1,36 @@
+<a href="/users">&larr; Back</a>
+<div class="admin-title">
+    <h2>View / Edit User</h2>
+    
+    <form action="/users/<%= result._id %>?_method=DELETE" method="POST">
+        <input type="submit" class="btn" value="Delete">
+    </form>
+</div> 
+<ul> 
+    <h2 class="articles_heading" style="font-weight:400;">User</h2>
+    <li><b>Name: </b><%= result.name %></li>
+    <li><b>ID: </b><%= result._id %></li>
+    <li><b>Email: </b><%= result.email %></li><br>
+
+    <section class="articles" style="display:flex; flex-direction:row;">
+        <div> 
+          <p><b>Update this user</b></p>
+          <form action="/users/<%= result._id %>?_method=PUT" method="POST">
+
+            <label for="name"><b>Name</b></label><br>
+            <input type="text" name="name" placeholder="Enter name"><br>
+
+            <label for="email"><b>Email</b></label><br>
+            <input type="email" name="email" placeholder="Enter email"><br>
+
+            <input type="submit" class="btn" value="UPDATE">
+          </form><br>
+
+          <p><b>Delete this user</b></p>
+          <form action="/users/<%= result._id %>?_method=DELETE" method="POST">
+            <input type="submit" class="btn" value="DELETE">
+          </form>
+        </div>
+    </section> 
+</ul>
+
