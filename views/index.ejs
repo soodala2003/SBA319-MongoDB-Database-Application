@@ -1,20 +1,41 @@
-<!-- <div class="author">
-    <h1 class="author_heading">Hi</h1>
-    <p class="author_body">Movies Users Comments</p>
+<div class="author">
+    
 </div>
 
-<section class="articles">
-    <h2 class="articles_heading" style="font-weight:400;">Movies</h2>
+<section class="articles" style="display:flex; flex-direction:row;">
+  <div style="margin-left:100px;">
+    <h2 class="articles_heading" style="font-weight:400;"><b>Create a user</b></h2>
+    
+    <form action="/users" method="POST">
 
-    <ul class="article_ul" style="list-style-type:none; display:flex; flex-direction:column;">
-      <% results.forEach(movie => { %> 
-        <li>
-          <a href="/movies/<%= movie._id %>" style="display:flex; justify-content:space-between; list-style-type:none; text-decoration:none;">
-            <span><%= movie.title %></span>
-          </a>
-        </li>
-      <% }) %>
-    </ul>
+      <label for="name"><b>Name</b></label><br>
+      <input type="text" name="name" placeholder="Enter name"><br>
+    
+      <label for="email"><b>Email</b></label><br>
+      <input type="email" name="email" placeholder="Enter email"><br>
+    
+      <input type="submit" class="btn" value="Add">
+    </form>
+  </div>
 
-    <a href="#" class="pagination">&lt; View Latest Movies</a>
-</section> -->
+  <div style="margin-left:100px;">
+    <h2 class="articles_heading" style="font-weight:400;"><b>Create a comment</b></h2>
+ 
+    <form action="/comments" method="POST">
+
+      <label for="name"><b>Name</b></label><br>
+      <input type="text" name="name" placeholder="Enter name"><br>
+    
+      <label for="email"><b>Email</b></label><br>
+      <input type="email" name="email" placeholder="Enter email"><br>
+    
+      <label for="movie_id"><b>Movie ID</b></label><br>
+      <input type="text" name="movie_id" placeholder="Enter movie_id"><br>
+
+      <label for="text"><b>Text</b></label><br>
+      <textarea id="text" name="text" rows="3" cols="20" placeholder="Enter comment"></textarea><br>
+
+      <input type="submit" class="btn" value="Add">
+    </form>
+  </div>
+</section> 
