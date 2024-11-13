@@ -2,7 +2,6 @@ import express from "express";
 import dotenv from "dotenv";
 import expressLayout from "express-ejs-layouts";
 import cookieParser from "cookie-parser";
-import main from "./routes/main.mjs";
 import users from "./routes/users.mjs";
 import comments from "./routes/comments.mjs";
 import movies from "./routes/movies.mjs";
@@ -23,7 +22,16 @@ app.use(expressLayout);
 app.set("layout", "./layouts/main");
 app.set("view engine", "ejs");
 
-app.use("/", main);
+// GET / Home
+app.get("/", (req, res) => {
+    const locals = {
+        title: "NodeJs",
+        description: "Simple page created with NodeJs, Express, and MongoDB."
+    };
+
+    res.render("index", { locals });
+});
+
 app.use("/users", users);
 app.use("/comments", comments);
 app.use("/movies", movies);
