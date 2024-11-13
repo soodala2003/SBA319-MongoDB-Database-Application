@@ -8,10 +8,16 @@ const router = express.Router();
 router.get("/", async (req, res) => {
     let collection = await db.collection("comments");
     let results = await collection
-        .find({}).limit(20).toArray();
+        .aggregate([
+            { $project: { 
+                _id: 1, name: 1, 
+                email: 1, movie_id: 1, 
+                text: 1, date: 1 
+            } },
+        ])
+        .toArray();
 
-    //res.send(results).status(200);
-    res.render("comments", { results});
+    res.render("comments", { results });
 });
 
 // Get a single comment
@@ -22,21 +28,44 @@ router.get("/:id", async (req, res) => {
 
     if (!result) res.send("Not found").status(404);
     else res.render("comments_id", { result });
-    //else res.send(result).status(200);
 });
 
-// "/comment/:id"
-// Update the post with a new comment
+// Add a new comment to the collection
+router.post("/", async (req, res) => {
+    let collection = await db.collection("comments");
+    let newDocument = req.body;
+    newDocument.date = new Date();
+    let result = await collection.insertOne(newDocument);
+
+    res.redirect("comments");
+});
+
+// Update a comment
 router.patch("/:id", async (req, res) => {
     const query = { _id: new ObjectId(req.params.id) };
     const updates = {
-      $push: { text: req.body },
+      $set: { 
+        name: req.body.name, 
+        email: req.body.email, 
+        movie_id: req.body.movie_id,
+        text_body: req.body.text_body,
+      },
     };
   
     let collection = await db.collection("comments");
     let result = await collection.updateOne(query, updates);
   
-    res.send(result).status(200);
+    res.redirect("/comments"); 
+});
+
+// Delete an entry
+router.delete("/:id", async (req, res) => {
+    const query = { _id: new ObjectId(req.params.id) };
+  
+    const collection = db.collection("comments");
+    let result = await collection.deleteOne(query);
+
+    res.redirect("/comments");
 });
 
 export default router;
