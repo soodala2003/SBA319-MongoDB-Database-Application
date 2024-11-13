@@ -8,24 +8,47 @@ body li {
     list-style-type: none;
 }
 
-input[type="text"],
-input[type="email"],
-input[type="password"],
-input[type="search"],
-select, textarea {
-    font-family: "Poppins", sans-serif;
-    display: block;
-    box-sizing: border-box;
-    width: 100%;
-    padding: 0.7rem 0.75rem;
-    margin-bottom: 1rem;
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 10px;
 }
 
-/* .poppins-regular {
+.main {
+   padding: 20px 0; 
+}
+
+.btn {
+    background-color: black;
+    border-radius: 10px;
+    color: white;
+    
+    padding: 5px 20px;
+    text-decoration: none;
+    margin: 4px 0px;
+    cursor: pointer;
+}
+
+.btn_delete {
+    background-color: rgb(243, 35, 35);
+    border-color: rgb(243, 35, 35);
+    border-radius: 10px;
+    color: white;
+
+    padding: 5px 20px;
+    text-decoration: none;
+    margin: 4px 0px;
+    cursor: pointer;
+}
+
+input[type="text"],
+input[type="email"],
+textarea {
     font-family: "Poppins", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-} */
+    /* display: block; */
+    box-sizing: border-box;
+    width: 100%;
+}
 
 .header_nav ul {
     list-style-type: none;
@@ -36,17 +59,31 @@ select, textarea {
 }
 
 .header_nav a {
-    padding: 10px;
+    margin-right: 50px;
     text-decoration: none;
 }
 
-.header_button {
-    grid-area: button;
+.user_title, .comment_title, .movie_title {
     display: flex;
-    justify-content: end;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.header_button button {
+.user_lists, .comment_lists, .movie_lists {
+    padding: 0;
+    margin: 0;
+}
+
+.user_lists li, 
+.comment_lists li,
+.movie_lists li {
     display: flex;
-    align-items: center;
+    justify-content: space-between;
+    text-decoration: none;
+}
+
+.user_lists_controls .btn, 
+.comment_lists_controls .btn,
+.movie_lists_controls .btn {
+    display: inline-block;
 }
