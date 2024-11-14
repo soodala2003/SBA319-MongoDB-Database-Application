@@ -1,11 +1,18 @@
-<ul>
-  <h3>A list of 20 names who commented</h3>
-  <p><b>:</b> Retrieve a comment data with a click of each name.</p>
+<div class="comment_title">
+  <h2>Comments</h2>
+  <a href="http://localhost:5050">+ Add New Comment</a>
+</div>
+
+<ul class="comment_lists">
   <% results.forEach(comment => { %>
     <li>
-        <a href="/comments/<%= comment._id %>" style="display:flex; list-style-type:none; text-decoration:none;">
-          <span><%= comment.name %></span>
-        </a>
+      <a href="/comments/<%= comment._id %>" style="display:flex; text-decoration:none;">
+        <%= comment.name %> &nearr;
+      </a>
+
+      <div class="comment_lists_controls">
+        <a href="/comments/<%= comment._id %>" class="btn">View</a>
+      </div>
     </li>
   <% }) %>
 </ul>
