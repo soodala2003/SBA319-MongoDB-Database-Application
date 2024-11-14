@@ -1,20 +1,17 @@
-<div>
+<div class="user_title">
   <h2>Users</h2>
-  <a href="#" class="button">+ Add New User</a>
+  <a href="http://localhost:5050">+ Add New User</a>
 </div>
 
-<ul>
+<ul class="user_lists">
   <% results.forEach(user => { %>
     <li>
       <a href="/users/<%= user._id %>" style="display:flex; text-decoration:none;">
         <%= user.name %> &nearr;
       </a>
-      <div class="admin-post-controls">
-        <a href="/users/<%= user._id %>" class="btn">Edit</a>
-
-        <form action="/users/<%= user._id %>?_method=DELETE" method="POST">
-          <input type="submit" class="btn" value="DELETE">
-        </form>
+      
+      <div class="user_lists_controls">
+        <a href="/users/<%= user._id %>" class="btn">View</a>
       </div>
     </li>
   <% }) %>
