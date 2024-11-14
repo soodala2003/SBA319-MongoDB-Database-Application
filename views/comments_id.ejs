@@ -1,8 +1,40 @@
-<ul> 
+<div class="comment_title">
+  <h2>Delete / Update Comment</h2>
+  <a href="/comments">&larr; Back</a>
+</div> 
+
+<section class="articles" style="display:flex; flex-direction:column;">
+  <div>
+    <h2 class="articles_heading" style="font-weight:400;">Delete this comment</h2>
     <li><b>Name: </b><%= result.name %></li>
     <li><b>ID: </b><%= result._id %></li>
     <li><b>Email: </b><%= result.email %></li>
-    <li><b>Movie ID: </b><%= result.movies_id %></li>
-    <li><b>Comment: </b><%= result.text %></li>
+    <li><b>Movie ID: </b><%= result.movie_id %></li>
+    <li><b>Comment: </b><%= result.text_body %></li>
     <li><b>Date: </b><%= result.date %></li>
-</ul>
+        
+    <form action="/comments/<%= result._id %>?_method=DELETE" method="POST">
+      <input type="submit" class="btn_delete" value="Delete">
+    </form> 
+  </div>
+
+  <div style="width:300px"> 
+    <h2 class="articles_heading" style="font-weight:400;">Update this comment</h2>
+      <form action="/comments/<%= result._id %>?_method=PATCH" method="POST">
+
+        <label for="name"><b>Name</b></label>
+        <input type="text" name="name" placeholder="Enter name" value="<%= result.name %>"><br>
+
+        <label for="email"><b>Email</b></label>
+        <input type="email" name="email" placeholder="Enter email" value="<%= result.email %>"><br>
+
+        <label for="movie_id"><b>Movie ID</b></label>
+        <input type="text" name="movie_id" placeholder="Enter movie id" value="<%= result.movie_id %>"><br>
+
+        <label for="text_body"><b>Comment</b></label>
+        <textarea id="text" name="text_body" rows="5" cols="50" placeholder="Enter comment"></textarea>
+
+        <input type="submit" class="btn" value="Update">
+      </form><br>
+  </div>
+</section> 
