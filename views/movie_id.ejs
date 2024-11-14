@@ -1,0 +1,35 @@
+<div class="movie_title">
+  <h2>Delete / Update Movie</h2>
+  <a href="/movies">&larr; Back</a>
+</div> 
+
+<section class="articles" style="display:flex; flex-direction:column;">
+  <div>
+    <h2 class="articles_heading" style="font-weight:400;">Delete this movie</h2>
+    <li><b>Title: </b><%= result.title %></li>
+    <li><b>ID: </b><%= result._id %></li>
+    <li><b>Plot: </b><%= result.plot %></li>
+    <li><b>Released Year: </b><%= result.year %></li><br>
+        
+    <form action="/movies/<%= result._id %>?_method=DELETE" method="POST">
+      <input type="submit" class="btn_delete" value="Delete">
+    </form> 
+  </div>
+
+  <div style="width:300px"> 
+    <h2 class="articles_heading" style="font-weight:400;">Update this movie</h2>
+      <form action="/movies/<%= result._id %>?_method=PATCH" method="POST">
+
+        <label for="title"><b>Title</b></label>
+        <input type="text" name="title" placeholder="Enter title" value="<%= result.title %>"><br>
+
+        <label for="plot"><b>Plot</b></label>
+        <textarea id="plot_text" name="plot" rows="3" cols="50" placeholder="Enter the plot of this movie"></textarea>
+
+        <label for="year"><b>Year</b></label>
+        <input type="text" name="year" placeholder="Enter released year" value="<%= result.year %>"><br>
+
+        <input type="submit" class="btn" value="Update">
+      </form><br>
+  </div>
+</section> 
