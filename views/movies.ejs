@@ -1,11 +1,18 @@
-<ul>
-  <h3>A list of 20 titles of movies</h3>
-  <p><b>:</b> Retrieve a movie data with a click of each title.</p>
+<div class="movie_title">
+  <h2>Movies</h2>
+  <a href="http://localhost:5050">+ Add New Movie</a>
+</div>
+
+<ul class="movie_lists">
   <% results.forEach(movie => { %>
     <li>
-      <a href="/movies/<%= movie._id %>" style="display:flex; list-style-type:none; text-decoration:none;">
-        <span><%= movie.title %></span>
+      <a href="/movies/<%= movie._id %>" style="display:flex; text-decoration:none;">
+        <%= movie.title %> &nearr;
       </a>
+      
+      <div class="movie_lists_controls">
+        <a href="/movies/<%= movie._id %>" class="btn">View</a>
+      </div>
     </li>
   <% }) %>
 </ul>
