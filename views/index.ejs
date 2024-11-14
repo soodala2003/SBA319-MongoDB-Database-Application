@@ -1,9 +1,5 @@
-<div class="author">
-    
-</div>
-
 <section class="articles" style="display:flex; flex-direction:row;">
-  <div style="margin-left:100px;">
+  <div style="width:300px;">
     <h2 class="articles_heading" style="font-weight:400;"><b>Create a user</b></h2>
     
     <form action="/users" method="POST">
@@ -18,7 +14,7 @@
     </form>
   </div>
 
-  <div style="margin-left:100px;">
+  <div style="margin-left:100px; width:300px;">
     <h2 class="articles_heading" style="font-weight:400;"><b>Create a comment</b></h2>
  
     <form action="/comments" method="POST">
@@ -32,8 +28,26 @@
       <label for="movie_id"><b>Movie ID</b></label><br>
       <input type="text" name="movie_id" placeholder="Enter movie_id"><br>
 
-      <label for="text"><b>Text</b></label><br>
-      <textarea id="text" name="text" rows="3" cols="20" placeholder="Enter comment"></textarea><br>
+      <label for="text_body"><b>Comment</b></label><br>
+      <textarea id="comment_text" name="text_body" rows="10" cols="30" placeholder="Enter comment"></textarea><br>
+
+      <input type="submit" class="btn" value="Add">
+    </form>
+  </div>
+
+  <div style="margin-left:100px; width:300px;">
+    <h2 class="articles_heading" style="font-weight:400;"><b>Create a movie</b></h2>
+    
+    <form action="/movies" method="POST">
+
+      <label for="title"><b>Title</b></label><br>
+      <input type="text" name="title" placeholder="Enter title"><br>
+    
+      <label for="plot"><b>Plot</b></label><br>
+      <textarea id="plot_text" name="plot" rows="5" cols="30" placeholder="Enter plot"></textarea><br>
+
+      <label for="year"><b>Year</b></label><br>
+      <input type="text" name="year" placeholder="Enter released year"><br>
 
       <input type="submit" class="btn" value="Add">
     </form>
