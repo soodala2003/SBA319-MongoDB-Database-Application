@@ -7,16 +7,15 @@ const router = express.Router();
 // Get all names that have commented
 router.get("/", async (req, res) => {
     let collection = await db.collection("comments");
-    let results = await collection
-        .aggregate([
-            { $project: { 
-                _id: 1, name: 1, 
-                email: 1, movie_id: 1, 
-                text: 1, date: 1 
-            } },
-        ])
-        .toArray();
 
+    // Define the query to create the index
+    const sort = { date: -1 };
+
+    let results = await collection
+        .find()
+        .sort(sort)
+        .toArray();
+        
     res.render("comments", { results });
 });
 
