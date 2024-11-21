@@ -1,47 +1,9 @@
 import express from "express";
 import db from "../db/conn.mjs";
 import { ObjectId } from "mongodb";
+import Joi from "joi";
 
 const router = express.Router();
-
-// The schema validation function
-async () => {
-    await db.createCollection("users", {
-        validator: {
-            $jsonSchema: {
-                bsonType: "object",
-                title: "User Validation",
-                required: ["name", "email" ],
-                properties: {
-                  name: {
-                    bsonType: "string",
-                    description: "'name' must be a string and is required",
-                  },
-                  email: {
-                    bsonType: "string",
-                    description: "'email' must be a string and is required",
-                  }
-                }
-            }
-    
-        }
-    });
-};
-
-// Test the schema validation by inserting an invalid document
-router.get("/validation", async (req, res) => {
-    let collection = await db.collection("users");
-    let newDocument = {
-      name: "Moon",
-      email: "mseo@example.com",
-    };
-  
-    let result = await collection.insertOne(newDocument).catch((e) => {
-      return e.errInfo.details.schemaRulesNotSatisfied;
-    }); 
-    //res.redirect("users");
-    res.send(result).status(204);
-});
 
 // Get all users entries
 router.get("/", async (req, res) => {
@@ -68,9 +30,24 @@ router.get("/:id", async (req, res) => {
 router.post("/", async (req, res) => {
     let collection = await db.collection("users");
     let newDocument = req.body;
-    newDocument.date = new Date();
-    let result = await collection.insertOne(newDocument);
 
+    // Create the schema
+    const schema = Joi.object({
+        _id: Joi.object(),
+        name: Joi.string().required(),
+        email: Joi.string().email().required()
+    });
+
+    const { error } = schema.validate(req.body);
+    if (error) {
+        const errorDetails = error.details.map(d => d.message).join("<br>");
+        res.send(`<h2>ValidationError: </h2>${errorDetails}`);
+        return;
+    } else {
+        await collection.insertOne(newDocument);
+    }
+
+    // Redirect the users page  
     res.redirect("users");
 });
 
